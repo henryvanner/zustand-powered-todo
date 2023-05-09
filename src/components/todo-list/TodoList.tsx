@@ -1,13 +1,9 @@
+import { useTodos } from '../../hooks'
 import { TodoListItem } from '../todo-list-item'
 import styles from './TodoList.module.css'
 
 type TodoListProps = {
   itemsTestId?: string
-  todos?: {
-    id: string
-    description: string
-    completed: boolean
-  }[]
   markTodoAsCompleted?: (id: string) => void
   markTodoAsPending?: (id: string) => void
   deleteTodo?: (id: string) => void
@@ -15,11 +11,11 @@ type TodoListProps = {
 
 export const TodoList: React.FC<TodoListProps> = ({
   itemsTestId,
-  todos = [],
   markTodoAsCompleted,
   markTodoAsPending,
   deleteTodo,
 }) => {
+  const todos = useTodos()
   return (
     <div>
       <h2 className={styles.heading}>Todos</h2>

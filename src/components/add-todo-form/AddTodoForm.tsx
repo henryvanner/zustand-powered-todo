@@ -1,12 +1,10 @@
 import { useState } from 'react'
+import { useAddTodo } from '../../hooks'
 import styles from './AddTodoForm.module.css'
 
-type AddTodoFormProps = {
-  addTodo?: (description: string) => void
-}
-
-export const AddTodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
+export const AddTodoForm: React.FC = () => {
   const [textInput, setTextInput] = useState('')
+  const addTodo = useAddTodo()
 
   const handleTextInputChange: React.ChangeEventHandler<HTMLInputElement> = (
     event,
@@ -17,10 +15,8 @@ export const AddTodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
 
-    if (addTodo) {
-      addTodo(textInput)
-      setTextInput('')
-    }
+    addTodo(textInput)
+    setTextInput('')
   }
 
   return (
