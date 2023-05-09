@@ -1,0 +1,19 @@
+.listItem {
+  width: 100%;
+}
+
+.completenessCheckbox {
+  margin-right: 1rem;
+}
+
+.description {
+  font-size: 16px;
+}
+
+.description--completed {
+  text-decoration-line: line-through;
+}
+
+.deleteButton {
+  margin-left: 1rem;
+}

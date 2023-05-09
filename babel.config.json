@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": "3.30.2",
+        "shippedProposals": true
+      }
+    ],
+    "@babel/preset-typescript",
+    ["@babel/preset-react", { "runtime": "automatic" }]
+  ],
+  "plugins": [["@babel/plugin-proposal-decorators", { "version": "2023-01" }]]
+}
