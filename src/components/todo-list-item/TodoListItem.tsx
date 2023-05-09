@@ -8,7 +8,7 @@ type TodoListItemProps = {
   isCompleted?: boolean
   markTodoAsCompleted?: (id: string) => void
   markTodoAsPending?: (id: string) => void
-  deleteTodo?: () => void
+  deleteTodo?: (id: string) => void
 }
 
 export const TodoListItem: React.FC<TodoListItemProps> = memo(
@@ -39,6 +39,12 @@ export const TodoListItem: React.FC<TodoListItemProps> = memo(
       }
     }
 
+    const handleDeleteButtonClick = () => {
+      if (deleteTodo) {
+        deleteTodo(id)
+      }
+    }
+
     return (
       <li
         data-testid={testId}
@@ -61,7 +67,7 @@ export const TodoListItem: React.FC<TodoListItemProps> = memo(
           className={styles.deleteButton}
           type='button'
           aria-label={deleteButtonLabel}
-          onClick={deleteTodo}
+          onClick={handleDeleteButtonClick}
         >
           🗑
         </button>

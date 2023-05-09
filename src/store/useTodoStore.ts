@@ -13,6 +13,7 @@ type TodoState = {
   addTodo: (description: string) => void
   markTodoAsCompleted: (id: string) => void
   markTodoAsPending: (id: string) => void
+  deleteTodo: (id: string) => void
 }
 
 export const useTodoStore = create<TodoState>((set) => ({
@@ -49,6 +50,14 @@ export const useTodoStore = create<TodoState>((set) => ({
       if (!todo) return {}
 
       todo.completed = false
+      const updatedTodos = instanceToPlain(todos)
+
+      return updatedTodos
+    }),
+  deleteTodo: (id: string) =>
+    set((state) => {
+      const todos = plainToInstance(TodosRepository, { todos: state.todos })
+      todos.deleteTodo(id)
       const updatedTodos = instanceToPlain(todos)
 
       return updatedTodos

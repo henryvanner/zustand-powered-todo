@@ -1,4 +1,5 @@
 import {
+  useDeleteTodo,
   useMarkTodoAsCompleted,
   useMarkTodoAsPending,
   useTodos,
@@ -8,16 +9,13 @@ import styles from './TodoList.module.css'
 
 type TodoListProps = {
   itemsTestId?: string
-  deleteTodo?: (id: string) => void
 }
 
-export const TodoList: React.FC<TodoListProps> = ({
-  itemsTestId,
-  deleteTodo,
-}) => {
+export const TodoList: React.FC<TodoListProps> = ({ itemsTestId }) => {
   const todos = useTodos()
   const markTodoAsCompleted = useMarkTodoAsCompleted()
   const markTodoAsPending = useMarkTodoAsPending()
+  const deleteTodo = useDeleteTodo()
 
   return (
     <div>
@@ -32,7 +30,7 @@ export const TodoList: React.FC<TodoListProps> = ({
             isCompleted={todo.completed}
             markTodoAsCompleted={markTodoAsCompleted}
             markTodoAsPending={markTodoAsPending}
-            deleteTodo={deleteTodo ? () => deleteTodo(todo.id) : undefined}
+            deleteTodo={deleteTodo}
           />
         ))}
       </ul>
