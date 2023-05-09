@@ -1,19 +1,49 @@
 import { render, screen } from '@testing-library/react'
 import { TodoListItem } from './TodoListItem'
 
-test('TodoListItem renders correctly', () => {
+test('The todo description is present', () => {
   render(
     <TodoListItem
-      id='2'
-      description='Clean my room'
+      id='1'
+      description='make a cup of coffee'
     />,
   )
+  expect(screen.getByText('make a cup of coffee')).toBeInTheDocument()
+})
 
+test('The todo is unchecked if it is not completed', () => {
+  render(
+    <TodoListItem
+      id='1'
+      description='make a cup of coffee'
+    />,
+  )
   expect(
-    screen.getByRole('checkbox', { name: 'Clean my room' }),
-  ).toBeInTheDocument()
-  expect(screen.getByText('Clean my room')).toBeInTheDocument()
+    screen.getByRole('checkbox', { name: 'make a cup of coffee' }),
+  ).not.toBeChecked()
+})
+
+test('The todo is checked if it is completed', () => {
+  render(
+    <TodoListItem
+      id='1'
+      description='make a cup of coffee'
+      isCompleted
+    />,
+  )
   expect(
-    screen.getByRole('button', { name: 'Remove Clean my room todo' }),
+    screen.getByRole('checkbox', { name: 'make a cup of coffee' }),
+  ).toBeChecked()
+})
+
+test('The todo has a button for removing it', () => {
+  render(
+    <TodoListItem
+      id='1'
+      description='make a cup of coffee'
+    />,
+  )
+  expect(
+    screen.getByRole('button', { name: 'Remove make a cup of coffee todo' }),
   ).toBeInTheDocument()
 })
