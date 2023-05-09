@@ -2,6 +2,7 @@ import styles from './TodoListItem.module.css'
 
 type TodoListItemProps = {
   id: string
+  testId?: string
   description: string
   isCompleted?: boolean
   markAsCompleted?: () => void
@@ -12,6 +13,7 @@ type TodoListItemProps = {
 
 export const TodoListItem: React.FC<TodoListItemProps> = ({
   id,
+  testId,
   description,
   isCompleted,
   markAsCompleted,
@@ -25,7 +27,10 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({
     : styles.description
 
   return (
-    <li className={styles.listItem}>
+    <li
+      data-testid={testId}
+      className={styles.listItem}
+    >
       <input
         id={listItemId}
         className={styles.completenessCheckbox}
