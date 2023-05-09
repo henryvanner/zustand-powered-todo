@@ -6,9 +6,8 @@ type TodoListItemProps = {
   testId?: string
   description: string
   isCompleted?: boolean
-  markAsCompleted?: () => void
-  markAsPending?: () => void
-  // this prop could have been named just `delete` but it's a reserved keyword
+  markTodoAsCompleted?: (id: string) => void
+  markTodoAsPending?: (id: string) => void
   deleteTodo?: () => void
 }
 
@@ -18,8 +17,8 @@ export const TodoListItem: React.FC<TodoListItemProps> = memo(
     testId,
     description,
     isCompleted,
-    markAsCompleted,
-    markAsPending,
+    markTodoAsCompleted,
+    markTodoAsPending,
     deleteTodo,
   }) {
     const listItemId = `todoListItem${id}`
@@ -27,6 +26,18 @@ export const TodoListItem: React.FC<TodoListItemProps> = memo(
     const todoDescriptionClassName = isCompleted
       ? styles['description--completed']
       : styles.description
+
+    const handleCheckboxCompletnessChange = () => {
+      if (isCompleted && markTodoAsPending) {
+        markTodoAsPending(id)
+        return
+      }
+
+      if (!isCompleted && markTodoAsCompleted) {
+        markTodoAsCompleted(id)
+        return
+      }
+    }
 
     return (
       <li
@@ -38,7 +49,7 @@ export const TodoListItem: React.FC<TodoListItemProps> = memo(
           className={styles.completenessCheckbox}
           type='checkbox'
           defaultChecked={isCompleted}
-          onChange={isCompleted ? markAsPending : markAsCompleted}
+          onChange={handleCheckboxCompletnessChange}
         />
         <label
           className={todoDescriptionClassName}

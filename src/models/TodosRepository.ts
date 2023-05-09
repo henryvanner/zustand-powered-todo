@@ -6,4 +6,8 @@ export class TodosRepository {
   addTodo(todo: Todo) {
     this.todos = [...this.todos, todo]
   }
+
+  findById(id: string) {
+    return this.todos.find((todo) => todo.id === id)
+  }
 }
