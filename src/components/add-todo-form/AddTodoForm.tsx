@@ -13,7 +13,7 @@ export const AddTodoForm: React.FC = () => {
 
     addTodo(textInputRef.current.value)
     textInputRef.current.value = ''
-    textInputRef.current?.focus()
+    textInputRef.current.focus()
   }
 
   return (
