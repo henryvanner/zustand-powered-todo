@@ -18,7 +18,7 @@ type TodoState = {
 
 export const useTodoStore = create<TodoState>((set) => ({
   todos: [],
-  addTodo: (description: string) =>
+  addTodo: (description) =>
     set((state) => {
       const todos = plainToInstance(TodosRepository, { todos: state.todos })
       const todo = plainToInstance(Todo, {
@@ -30,7 +30,7 @@ export const useTodoStore = create<TodoState>((set) => ({
       const updatedTodos = instanceToPlain(todos)
       return updatedTodos
     }),
-  markTodoAsCompleted: (id: string) =>
+  markTodoAsCompleted: (id) =>
     set((state) => {
       const todos = plainToInstance(TodosRepository, { todos: state.todos })
       const todo = todos.findTodo(id)
@@ -42,7 +42,7 @@ export const useTodoStore = create<TodoState>((set) => ({
 
       return updatedTodos
     }),
-  markTodoAsPending: (id: string) =>
+  markTodoAsPending: (id) =>
     set((state) => {
       const todos = plainToInstance(TodosRepository, { todos: state.todos })
       const todo = todos.findTodo(id)
@@ -54,7 +54,7 @@ export const useTodoStore = create<TodoState>((set) => ({
 
       return updatedTodos
     }),
-  deleteTodo: (id: string) =>
+  deleteTodo: (id) =>
     set((state) => {
       const todos = plainToInstance(TodosRepository, { todos: state.todos })
       todos.deleteTodo(id)
