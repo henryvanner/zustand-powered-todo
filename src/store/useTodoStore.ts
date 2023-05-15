@@ -3,21 +3,11 @@ import { instanceToPlain, plainToInstance } from 'class-transformer'
 import { create } from 'zustand'
 import { TodosRepository } from '../models/TodosRepository'
 import { Todo } from '../models/Todo'
-
-type TodoState = {
-  todos: {
-    id: string
-    description: string
-    completed: boolean
-  }[]
-  addTodo: (description: string) => void
-  markTodoAsCompleted: (id: string) => void
-  markTodoAsPending: (id: string) => void
-  deleteTodo: (id: string) => void
-}
+import { TodoState, TodosVisibilityFilter } from '../types'
 
 export const useTodoStore = create<TodoState>((set) => ({
   todos: [],
+  visibilityFilter: TodosVisibilityFilter.ALL_TODOS,
   addTodo: (description) =>
     set((state) => {
       const todos = plainToInstance(TodosRepository, { todos: state.todos })
@@ -62,4 +52,6 @@ export const useTodoStore = create<TodoState>((set) => ({
 
       return updatedTodos
     }),
+  setActiveVisibilityFilter: (visibilityFilter: TodosVisibilityFilter) =>
+    set(() => ({ visibilityFilter })),
 }))

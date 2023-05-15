@@ -1,0 +1,18 @@
+.fieldset {
+  display: flex;
+  column-gap: 2rem;
+  border: none;
+  padding: 0px;
+}
+
+.fieldset__legend {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.radio__labelHiddenText {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}

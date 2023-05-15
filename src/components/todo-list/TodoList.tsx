@@ -3,6 +3,7 @@ import {
   useMarkTodoAsCompleted,
   useMarkTodoAsPending,
   useTodos,
+  useVisibilityFilter,
 } from '../../hooks'
 import { TodoListItem } from '../todo-list-item'
 import styles from './TodoList.module.css'
@@ -12,7 +13,8 @@ type TodoListProps = {
 }
 
 export const TodoList: React.FC<TodoListProps> = ({ itemsTestId }) => {
-  const todos = useTodos()
+  const visibilityFilter = useVisibilityFilter()
+  const todos = useTodos({ visibilityFilter })
   const markTodoAsCompleted = useMarkTodoAsCompleted()
   const markTodoAsPending = useMarkTodoAsPending()
   const deleteTodo = useDeleteTodo()

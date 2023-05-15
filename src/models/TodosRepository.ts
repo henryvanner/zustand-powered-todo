@@ -14,4 +14,12 @@ export class TodosRepository {
   deleteTodo(id: string) {
     this.todos = this.todos.filter((todo) => todo.id !== id)
   }
+
+  get completedTodos() {
+    return this.todos.filter((todo) => todo.completed)
+  }
+
+  get pendingTodos() {
+    return this.todos.filter((todo) => !todo.completed)
+  }
 }
