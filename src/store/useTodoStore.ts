@@ -1,8 +1,7 @@
 import { v4 } from 'uuid'
 import { instanceToPlain, plainToInstance } from 'class-transformer'
 import { create } from 'zustand'
-import { TodosRepository } from '../models/TodosRepository'
-import { Todo } from '../models/Todo'
+import { Todo, TodosRepository } from '../models'
 import { TodoState, TodosVisibilityFilter } from '../types'
 
 export const useTodoStore = create<TodoState>((set) => ({
