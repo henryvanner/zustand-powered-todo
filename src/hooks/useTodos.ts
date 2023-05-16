@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { plainToInstance } from 'class-transformer'
-import { useTodoStore } from '../store/useTodoStore'
+import { useTodoStore } from '../store'
 import { Todo, TodosRepository } from '../models'
 import { TodosVisibilityFilter } from '../types'
 
