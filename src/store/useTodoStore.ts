@@ -22,7 +22,7 @@ export const useTodoStore = create<TodoState>((set) => ({
   markTodoAsCompleted: (id) =>
     set((state) => {
       const todos = plainToInstance(TodosRepository, { todos: state.todos })
-      const todo = todos.findTodo(id)
+      const todo = todos.findById(id)
 
       if (!todo) return {}
 
@@ -34,7 +34,7 @@ export const useTodoStore = create<TodoState>((set) => ({
   markTodoAsPending: (id) =>
     set((state) => {
       const todos = plainToInstance(TodosRepository, { todos: state.todos })
-      const todo = todos.findTodo(id)
+      const todo = todos.findById(id)
 
       if (!todo) return {}
 
