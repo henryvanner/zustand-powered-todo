@@ -1,23 +1,10 @@
 import { useMemo } from 'react'
-import { plainToInstance } from 'class-transformer'
 import { useTodoStore } from '../store'
-import { Todo, TodosRepository } from '../models'
 import { TodosVisibilityFilter } from '../types'
+import { filterTodos } from '../utils'
 
 type UseTodosOptions = {
   visibilityFilter?: TodosVisibilityFilter
-}
-
-const filterTodos = (
-  todos: Todo[],
-  visibilityFilter: TodosVisibilityFilter,
-) => {
-  const todosRepository = plainToInstance(TodosRepository, { todos })
-  if (visibilityFilter === TodosVisibilityFilter.COMPLETED_ONLY)
-    return todosRepository.completedTodos
-  if (visibilityFilter === TodosVisibilityFilter.PENDING_ONLY)
-    return todosRepository.pendingTodos
-  return todosRepository.todos
 }
 
 export const useTodos = (options?: UseTodosOptions) => {
