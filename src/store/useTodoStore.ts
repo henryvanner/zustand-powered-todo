@@ -46,7 +46,7 @@ export const useTodoStore = create<TodoState>((set) => ({
   deleteTodo: (id) =>
     set((state) => {
       const todos = plainToInstance(TodosRepository, { todos: state.todos })
-      todos.deleteTodo(id)
+      todos.findByIdAndDelete(id)
       const updatedTodos = instanceToPlain(todos)
 
       return updatedTodos

@@ -11,7 +11,7 @@ export class TodosRepository {
     return this.todos.find((todo) => todo.id === id)
   }
 
-  deleteTodo(id: string) {
+  findByIdAndDelete(id: string) {
     this.todos = this.todos.filter((todo) => todo.id !== id)
   }
 
