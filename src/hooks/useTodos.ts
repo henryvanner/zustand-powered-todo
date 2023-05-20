@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useTodoStore } from '../store'
-import { TodosVisibilityFilter } from '../types'
 import { filterTodos } from '../utils'
+import { TodosVisibilityFilter } from '../types'
 
 type UseTodosOptions = {
   visibilityFilter?: TodosVisibilityFilter
