@@ -8,16 +8,16 @@ export const useTodoStore = create<TodoState>((set) => ({
   todos: [],
   visibilityFilter: TodosVisibilityFilter.ALL_TODOS,
   addTodo: (description) =>
-    set((state) => {
-      const todos = plainToInstance(TodosRepository, { todos: state.todos })
+    set(({ todos }) => {
+      const todosRepository = plainToInstance(TodosRepository, { todos })
       const todo = plainToInstance(Todo, {
         id: v4(),
         description,
         completed: false,
       })
-      todos.addTodo(todo)
-      const updatedTodos = instanceToPlain(todos)
-      return updatedTodos
+      todosRepository.addTodo(todo)
+      const updatedTodosRepository = instanceToPlain(todosRepository)
+      return updatedTodosRepository
     }),
   markTodoAsCompleted: (id) =>
     set(({ todos }) => {
@@ -34,12 +34,11 @@ export const useTodoStore = create<TodoState>((set) => ({
       return updatedTodosRepository
     }),
   deleteTodo: (id) =>
-    set((state) => {
-      const todos = plainToInstance(TodosRepository, { todos: state.todos })
-      todos.findByIdAndDelete(id)
-      const updatedTodos = instanceToPlain(todos)
-
-      return updatedTodos
+    set(({ todos }) => {
+      const todosRepository = plainToInstance(TodosRepository, { todos })
+      todosRepository.findByIdAndDelete(id)
+      const updatedTodosRepository = instanceToPlain(todos)
+      return updatedTodosRepository
     }),
   setActiveVisibilityFilter: (visibilityFilter: TodosVisibilityFilter) =>
     set(() => ({ visibilityFilter })),
