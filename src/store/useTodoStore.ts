@@ -20,28 +20,18 @@ export const useTodoStore = create<TodoState>((set) => ({
       return updatedTodos
     }),
   markTodoAsCompleted: (id) =>
-    set((state) => {
-      const todos = plainToInstance(TodosRepository, { todos: state.todos })
-      const todo = todos.findById(id)
-
-      if (!todo) return {}
-
-      todo.completed = true
-      const updatedTodos = instanceToPlain(todos)
-
-      return updatedTodos
+    set(({ todos }) => {
+      const todosRepository = plainToInstance(TodosRepository, { todos })
+      todosRepository.findByIdAndUpdate(id, { completed: true })
+      const updatedTodosRepository = instanceToPlain(todosRepository)
+      return updatedTodosRepository
     }),
   markTodoAsPending: (id) =>
-    set((state) => {
-      const todos = plainToInstance(TodosRepository, { todos: state.todos })
-      const todo = todos.findById(id)
-
-      if (!todo) return {}
-
-      todo.completed = false
-      const updatedTodos = instanceToPlain(todos)
-
-      return updatedTodos
+    set(({ todos }) => {
+      const todosRepository = plainToInstance(TodosRepository, { todos })
+      todosRepository.findByIdAndUpdate(id, { completed: false })
+      const updatedTodosRepository = instanceToPlain(todosRepository)
+      return updatedTodosRepository
     }),
   deleteTodo: (id) =>
     set((state) => {
