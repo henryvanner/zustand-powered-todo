@@ -37,7 +37,7 @@ export const useTodoStore = create<TodoState>((set) => ({
     set(({ todos }) => {
       const todosRepository = plainToInstance(TodosRepository, { todos })
       todosRepository.findByIdAndDelete(id)
-      const updatedTodosRepository = instanceToPlain(todos)
+      const updatedTodosRepository = instanceToPlain(todosRepository)
       return updatedTodosRepository
     }),
   setActiveVisibilityFilter: (visibilityFilter: TodosVisibilityFilter) =>

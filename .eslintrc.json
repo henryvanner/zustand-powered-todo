@@ -13,7 +13,14 @@
       "version": "detect"
     }
   },
-  "overrides": [],
+  "overrides": [
+    {
+      "files": ["**/__mocks__/**/*.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",

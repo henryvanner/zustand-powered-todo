@@ -22,7 +22,7 @@ export const VisibilityFilters = () => {
       <div>
         <label htmlFor='allTodosRadio'>
           <span className={styles.radio__labelHiddenText}>Show </span>
-          All todos
+          All Todos
         </label>
         <input
           id='allTodosRadio'
